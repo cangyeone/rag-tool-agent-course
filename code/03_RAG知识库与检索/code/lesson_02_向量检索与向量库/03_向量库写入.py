@@ -61,7 +61,7 @@ def load_course_snippets() -> list[dict]:
         ("大模型基础", "code/01_大模型基础/README.md", 900),
         ("模型接口与指令设计", "code/02_模型接口与指令设计/README.md", 900),
         ("RAG知识库与检索", "code/03_RAG知识库与检索/README.md", 900),
-        ("工具调用与智能体", "code/06_工具调用与智能体/code/README.md", 900),
+        ("工具调用路由与上下文", "code/04_工具调用路由与上下文/README.md", 900),
     ]
 
     for title, rel_path, max_chars in sample_files:
