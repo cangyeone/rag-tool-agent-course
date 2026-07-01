@@ -13,7 +13,7 @@
      $env:DEEPSEEK_API_KEY="YOUR_API_KEY_HERE"
 
      Windows PowerShell（永久生效）：
-     [Environment]::SetEnvironmentVariable("DEEPSEEK_API_KEY", "sk-xxx", "User")
+     [Environment]::SetEnvironmentVariable("DEEPSEEK_API_KEY", "YOUR_DEEPSEEK_API_KEY", "User")
 
   3. 在 qa_bot_api.py 同目录创建 .env 文件，写入：
      DEEPSEEK_API_KEY=your_api_key_here

@@ -101,7 +101,7 @@ def load_course_docs() -> list[dict]:
                 doc_type = "工具调用"
             elif "模型" in title or "AI" in title or "DeepSeek" in title or "接口" in title:
                 doc_type = "模型与接口"
-            elif f.suffix == ".py.md":
+            elif f.suffix == ".md" and f.with_suffix(".py").exists():
                 doc_type = "代码说明"
             else:
                 doc_type = "课程资料"

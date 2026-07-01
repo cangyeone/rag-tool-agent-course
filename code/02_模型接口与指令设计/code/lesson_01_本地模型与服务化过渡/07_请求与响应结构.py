@@ -42,7 +42,7 @@ print("user_id： ", USER_ID)
 print("密钥状态：", "已设置（不打印明文）" if API_KEY else "未设置")
 if not API_KEY:
     print("  未设置 DEEPSEEK_API_KEY，脚本进入讲解模式，不发送真实请求。")
-    print("  Windows: $env:DEEPSEEK_API_KEY=\"sk-xxx\"")
+    print("  Windows: $env:DEEPSEEK_API_KEY=\"YOUR_DEEPSEEK_API_KEY\"")
     print("  macOS/Linux: export DEEPSEEK_API_KEY=your_api_key_here")
     print("  多人共用时建议设置不同的 DEEPSEEK_USER_ID。")
 

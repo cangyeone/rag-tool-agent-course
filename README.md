@@ -11,7 +11,7 @@
 | 目录 | 内容 | 使用方式 |
 |---|---|---|
 | `lessons/` | Markdown 主讲义 | 按章节阅读，建立知识地图 |
-| `code/` | 课堂脚本与脚本任务书 | 每个 `.py` 旁边都有 `.py.md`，可让 OpenCode 按说明实现或修改 |
+| `code/` | 课堂脚本与脚本任务书 | 每个 `.py` 旁边都有同名 `.md`，可让 OpenCode 按说明实现或修改 |
 | `rag_assistant/` | 简化 RAG 问答机器人 | 用自己的公开文档构建个人知识库 |
 | `personal_kb/` | 个人知识库模块 | 学习解析、索引、检索、问答封装 |
 | `.env.example` | 环境变量模板 | 复制为 `.env` 后填入自己的 Key，禁止提交真实 Key |
@@ -31,7 +31,7 @@ cp .env.example .env
 
 1. 用 OpenCode 打开仓库根目录。
 2. 阅读 `lessons/README.md` 和某一章 Markdown。
-3. 打开对应 `code/` 目录中的脚本和同名 `.py.md`。
+3. 打开对应 `code/` 目录中的脚本和同名 `.md`。
 4. 对 OpenCode 说：
 
 ```text

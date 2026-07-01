@@ -44,7 +44,7 @@ if not API_KEY:
     raise SystemExit(
         "未设置 DEEPSEEK_API_KEY。\n"
         "macOS/Linux: export DEEPSEEK_API_KEY=your_api_key_here\n"
-        "Windows PowerShell: $env:DEEPSEEK_API_KEY=\"sk-xxx\""
+        "Windows PowerShell: $env:DEEPSEEK_API_KEY=\"YOUR_DEEPSEEK_API_KEY\""
     )
 
 
