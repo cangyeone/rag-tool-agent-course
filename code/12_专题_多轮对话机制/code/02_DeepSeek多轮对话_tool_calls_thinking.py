@@ -51,20 +51,20 @@ def search_policy(query: str) -> dict:
         "tool": "search_policy",
         "query": query,
         "title": "候补申请说明",
-        "content": "候补申请是排队下单机制，是否兑现取决于退款、变更、库存释放和排队顺序，不能保证一定成功。",
+        "content": "候补申请是排队创建订单机制，是否兑现取决于退款、变更、库存释放和排队顺序，不能保证一定成功。",
         "source": "课堂示例政策库",
     }
 
 
-def query_ticket(train_no: str) -> dict:
+def query_order_status(order_id: str) -> dict:
     return {
-        "tool": "query_ticket",
-        "train_no": train_no,
+        "tool": "query_order_status",
+        "order_id": order_id,
         "date": "2026-06-22",
         "seat_type": "标准服务",
         "remaining": 0,
         "status": "无库存",
-        "suggestion": "可尝试候补申请，同时查看临近订单编号。",
+        "suggestion": "可尝试候补申请，同时查看临近服务编号。",
     }
 
 
@@ -86,14 +86,14 @@ tools = [
     {
         "type": "function",
         "function": {
-            "name": "query_ticket",
-            "description": "查询某个订单编号的示例库存状态。",
+            "name": "query_order_status",
+            "description": "查询某个服务编号的示例库存状态。",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "train_no": {"type": "string", "description": "订单编号号，例如 G107"}
+                    "order_id": {"type": "string", "description": "服务编号号，例如 ORD-1001"}
                 },
-                "required": ["train_no"],
+                "required": ["order_id"],
             },
         },
     },
@@ -101,14 +101,14 @@ tools = [
 
 tool_map = {
     "search_policy": search_policy,
-    "query_ticket": query_ticket,
+    "query_order_status": query_order_status,
 }
 
 messages = [
     {
         "role": "system",
         "content": (
-            "你是客服辅助助手。遇到政策、订单编号状态、规则依据时，要优先调用工具。"
+            "你是客服辅助助手。遇到政策、服务编号状态、规则依据时，要优先调用工具。"
             "最终回答要说明依据来自工具结果。"
         ),
     }
@@ -184,7 +184,7 @@ def run_user_turn(question: str) -> None:
         sub_turn += 1
 
 
-run_user_turn("G107 今天标准服务没票了，候补申请一定能成功吗？请给一个稳妥答复。")
+run_user_turn("ORD-1001 今天标准服务没票了，候补申请一定能成功吗？请给一个稳妥答复。")
 #run_user_turn("如果用户很着急，客服回答时应该怎么补充建议？")
 
 print("\n结论")

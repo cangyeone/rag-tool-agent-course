@@ -51,7 +51,6 @@ console = Console()
 # ── 配置 ──
 API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
 BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/")
-#API_KEY = os.getenv("BAILIAN_API_KEY", "").strip()
 CHAT_URL = BASE_URL + "/v1/chat/completions"
 MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
 MAX_TOKENS = int(os.getenv("QA_MAX_TOKENS", "1024"))

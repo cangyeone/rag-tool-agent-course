@@ -112,7 +112,7 @@ Chat API 里我们常写这样的结构：
 ```python
 messages = [
     {"role": "system", "content": "你是 通用咨询助手，只解释规则，不承诺真实库存。"},
-    {"role": "user", "content": "G107 没票了，候补申请是不是一定能成功？"},
+    {"role": "user", "content": "ORD-1001 没票了，候补申请是不是一定能成功？"},
 ]
 ```
 

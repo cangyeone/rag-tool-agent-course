@@ -12,10 +12,8 @@
 └── code/
     ├── 01_DeepSeek多轮对话_纯对话模式.py
     ├── 02_DeepSeek多轮对话_tool_calls_thinking.py
-    ├── 03_百炼Qwen多轮对话_thinking传回规则.py
     ├── 04_Qwen本地模型多轮对话.py
     ├── 05_OpenAI_SDK调用DeepSeek多轮对话.py
-    ├── 06_百炼Qwen多轮对话_tool_calls_thinking.py
     └── 07_Qwen本地模型最原始多轮对话.py
 ```
 
@@ -25,12 +23,9 @@
 | --- | --- | --- |
 | DeepSeek 普通多轮对话 | 传回 `user` 和 `assistant.content` | 没有工具调用时，`reasoning_content` 不需要传回 |
 | DeepSeek tool calls + thinking | 传回完整 assistant 消息和 tool 消息 | 发生 tool call 的那轮，`reasoning_content` 需要继续传回 |
-| 百炼 Qwen 普通多轮 | 传回 `user` 和 `assistant.content` | 默认不会读取历史中的 `reasoning_content` |
-| 百炼 Qwen 需要延续思考 | assistant 中保留 `reasoning_content` | 请求里设置 `preserve_thinking=True` |
 | 本地 Qwen transformers | 自己维护 `messages` 列表 | 用 JSON 协议手搓 tool calls，再用 `apply_chat_template` 渲染输入 |
 | 本地 Qwen 原始多轮 | 自己维护 `messages` 列表 | 不加工具，不加 JSON，只展示 chat template + generate |
 | OpenAI SDK 调 DeepSeek | 写法与 OpenAI SDK 基本一致 | 关键是 `base_url="https://api.deepseek.com"` |
-| 百炼 Qwen tool calls | 模型返回工具调用，程序执行工具，工具结果回传 | 总结工具结果时不再传 `tool_choice`；需要延续思考时用 `preserve_thinking=True` |
 
 ## 运行方式
 

@@ -2,7 +2,7 @@
 
 本脚本使用 rag-tool-agent-course/open_models/Qwen3.5-0.8B。
 
-DeepSeek / 百炼这类在线 API 有原生 tools 字段，模型会返回 tool_calls。
+DeepSeek 这类在线 API 有原生 tools 字段，模型会返回 tool_calls。
 本地 transformers 直接 generate 时，没有这个 HTTP 协议层。
 
 所以本脚本手搓一个最小 tool call 协议：
@@ -63,26 +63,26 @@ def search_policy(query: str) -> dict:
     }
 
 
-def query_ticket(train_no: str, date: str = "2026-06-22") -> dict:
-    """模拟订单编号库存查询。真实项目里这里会接业务系统接口。"""
+def query_order_status(order_id: str, date: str = "2026-06-22") -> dict:
+    """模拟服务编号库存查询。真实项目里这里会接业务系统接口。"""
     return {
-        "tool": "query_ticket",
-        "train_no": train_no,
+        "tool": "query_order_status",
+        "order_id": order_id,
         "date": date,
-        "from": "北京南",
-        "to": "上海虹桥",
+        "from": "服务点A",
+        "to": "服务点B",
         "seat_type": "标准服务",
         "remaining": 0,
         "status": "无库存",
         "can_submit_waitlist": True,
         "risk_note": "候补申请可以提交，但不保证一定兑现。",
-        "suggestion": "可提交候补申请，同时关注临近订单编号或其他服务类型。",
+        "suggestion": "可提交候补申请，同时关注临近服务编号或其他服务类型。",
     }
 
 
 tool_map = {
     "search_policy": search_policy,
-    "query_ticket": query_ticket,
+    "query_order_status": query_order_status,
 }
 
 tools_schema = [
@@ -94,10 +94,10 @@ tools_schema = [
         },
     },
     {
-        "name": "query_ticket",
-        "description": "查询指定订单编号在指定日期的示例库存状态。",
+        "name": "query_order_status",
+        "description": "查询指定服务编号在指定日期的示例库存状态。",
         "arguments": {
-            "train_no": "string，订单编号号，例如 G107",
+            "order_id": "string，服务编号号，例如 ORD-1001",
             "date": "string，使用服务日期，格式 YYYY-MM-DD；不知道时使用 2026-06-22",
         },
     },
@@ -106,8 +106,8 @@ tools_schema = [
 json_protocol = {
     "tool_call": {
         "action": "tool_call",
-        "tool_name": "query_ticket",
-        "arguments": {"train_no": "G107", "date": "2026-06-22"},
+        "tool_name": "query_order_status",
+        "arguments": {"order_id": "ORD-1001", "date": "2026-06-22"},
     },
     "final_answer": {
         "action": "final_answer",
@@ -116,7 +116,7 @@ json_protocol = {
 }
 
 system_text = f"""
-你是客服辅助助手。你不能直接编造订单编号状态或订单服务规则。
+你是客服辅助助手。你不能直接编造服务编号状态或订单服务规则。
 
 可用工具如下：
 {json.dumps(tools_schema, ensure_ascii=False, indent=2)}
@@ -133,7 +133,7 @@ system_text = f"""
 1. action 只能是 tool_call 或 final_answer。
 2. tool_call 时必须填写 tool_name 和 arguments。
 3. final_answer 时必须填写 answer。
-4. 用户问题里只要出现订单编号、库存、没票、标准服务、日期，必须先调用 query_ticket。
+4. 用户问题里只要出现服务编号、库存、没票、标准服务、日期，必须先调用 query_order_status。
 5. 没有看到工具执行结果前，不能输出 final_answer。
 6. 不要输出 <think> 内容。
 7. 不要输出 JSON 之外的文字。
@@ -222,7 +222,7 @@ def extract_json(text: str) -> dict:
 
 def question_needs_tool(question: str) -> bool:
     """判断这类问题是否应该先查工具。"""
-    keywords = ["G107", "订单编号", "库存", "没票", "标准服务", "日期", "候补申请"]
+    keywords = ["ORD-1001", "服务编号", "库存", "没票", "标准服务", "日期", "候补申请"]
     return any(word in question for word in keywords)
 
 
@@ -235,11 +235,11 @@ def repair_with_simple_rule(question: str, raw_text: str) -> dict:
     print("\nJSON 解析失败，进入课堂兜底。原始输出：")
     print(raw_text)
 
-    if "G107" in question or "订单编号" in question or "标准服务" in question:
+    if "ORD-1001" in question or "服务编号" in question or "标准服务" in question:
         return {
             "action": "tool_call",
-            "tool_name": "query_ticket",
-            "arguments": {"train_no": "G107", "date": "2026-06-22"},
+            "tool_name": "query_order_status",
+            "arguments": {"order_id": "ORD-1001", "date": "2026-06-22"},
         }
 
     if "候补申请" in question or "规则" in question:
@@ -251,7 +251,7 @@ def repair_with_simple_rule(question: str, raw_text: str) -> dict:
 
     return {
         "action": "final_answer",
-        "answer": "这个问题不需要调用工具，可以直接回答：请提供更具体的订单编号、日期或政策问题。",
+        "answer": "这个问题不需要调用工具，可以直接回答：请提供更具体的服务编号、日期或政策问题。",
     }
 
 
@@ -282,8 +282,8 @@ def run_user_turn(question: str) -> None:
             print("\n校验发现：这类问题需要先查工具，不能直接 final_answer。")
             parsed = {
                 "action": "tool_call",
-                "tool_name": "query_ticket",
-                "arguments": {"train_no": "G107", "date": "2026-06-22"},
+                "tool_name": "query_order_status",
+                "arguments": {"order_id": "ORD-1001", "date": "2026-06-22"},
             }
 
         print("\n解析并校验后的 JSON：")
@@ -345,11 +345,11 @@ def run_user_turn(question: str) -> None:
             break
 
 
-run_user_turn("G107 在 2026-06-22 标准服务没票了，候补申请一定能成功吗？请给一个稳妥答复。")
+run_user_turn("ORD-1001 在 2026-06-22 标准服务没票了，候补申请一定能成功吗？请给一个稳妥答复。")
 run_user_turn("如果用户很着急，下一句应该怎么补充建议？")
 
 print("\n结论")
 print("1. 本地 transformers 没有原生 tool_calls 字段，需要自己约定 JSON 协议。")
 print("2. 模型负责输出 JSON 指令，Python 负责解析 JSON 和执行工具。")
 print("3. 工具结果要重新放回 messages，模型才能基于结果继续回答。")
-print("4. 这和 DeepSeek/百炼的 tool call 主线一致，只是协议层由我们手搓。")
+print("4. 这和 DeepSeek 等在线 API 的 tool call 主线一致，只是协议层由我们手搓。")

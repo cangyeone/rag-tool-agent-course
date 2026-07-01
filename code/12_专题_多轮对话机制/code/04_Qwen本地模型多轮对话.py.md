@@ -5,7 +5,7 @@
 请根据下面的说明阅读、实现或修改脚本：`code/12_专题_多轮对话机制/code/04_Qwen本地模型多轮对话.py`。
 
 这个脚本的主题是：**04 Qwen本地模型多轮对话**。
-现有代码开头提示：04 本地 Qwen 多轮对话：手搓 tool calls。 本脚本使用 rag-tool-agent-course/open_models/Qwen3.5-0.8B。 DeepSeek / 百炼这类在线 API 有原生 tools 字段，模型会返回 tool_calls。
+现有代码开头提示：04 本地 Qwen 多轮对话：手搓 tool calls。 本脚本使用 rag-tool-agent-course/open_models/Qwen3.5-0.8B。 DeepSeek 这类在线 API 有原生 tools 字段，模型会返回 tool_calls。
 
 ## 目标
 

@@ -388,7 +388,7 @@ DeepSeek API (stream=True) → 流式输出
 - **Response**: SSE 事件流
   ```
   data: {"type":"token","token":"候补申请"}
-  data: {"type":"token","token":"下单"}
+  data: {"type":"token","token":"创建订单"}
   ...
   data: {"type":"done","sources":[{...}]}
   ```

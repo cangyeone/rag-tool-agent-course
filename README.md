@@ -49,6 +49,10 @@ cp .env.example .env
 - 不要上传真实业务资料、用户数据或未授权文档。
 - 本仓库中的示例数据都是通用教学数据。
 
+## 许可证
+
+本课程采用 [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/) 许可协议发布。
+
 ## 学习目标
 
 完成课程后，学员应该能够：
@@ -56,6 +60,6 @@ cp .env.example .env
 - 搭建一个最小 RAG 知识库。
 - 理解关键词检索、向量检索、混合检索和 RRF。
 - 编写简单工具函数，并让模型选择工具。
-- 设计多工具 Router，避免一次性注入过多 schema。
+- 设计工具路由，避免一次性注入过多 schema。
 - 构建一个简化 Agent，并处理上下文和记忆。
 - 使用 OpenCode 根据 Markdown 任务书修改和扩展代码。

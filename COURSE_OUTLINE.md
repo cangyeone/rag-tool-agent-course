@@ -1,27 +1,27 @@
 # 课程大纲
 
-## 第 1 讲：AI 基础与模型发展
+## 第 1 讲：大模型基础
 
 - 传统机器学习与深度学习的发展脉络
 - Token、Embedding、Attention 与 Transformer
 - 原始文本生成、Chat 模板、流式输出
 - 本地模型、Ollama 和在线 API 的区别
 
-## 第 2 讲：大模型接口与业务指令
+## 第 2 讲：模型接口与指令设计
 
 - Chat Completions 请求结构
 - system / user / assistant 三类消息
 - temperature、max tokens、stream 等常见参数
 - JSON 输出、错误处理、边界控制
 
-## 第 3 讲：RAG 知识库与检索策略
+## 第 3 讲：RAG 知识库与检索
 
 - 文档解析：Markdown、PDF、Word、HTML
 - 文本清洗、切片、chunk size、overlap
 - BM25 关键词检索、Embedding 向量检索
 - 混合检索、RRF、Rerank 与检索评估
 
-## 第 4 讲：工具调用与 Agent
+## 第 4 讲：工具调用与智能体
 
 - 工具名称、描述、参数 schema、返回值
 - 模型直接选择工具与程序侧执行
