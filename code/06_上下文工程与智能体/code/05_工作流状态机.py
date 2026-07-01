@@ -78,7 +78,7 @@ print(json.dumps(state["trace"], ensure_ascii=False, indent=2))
 print("\n三、最终回答")
 print(state["final_answer"])
 
-print("\n四、和 可视化工具 的对应关系")
+print("\n四、和 工作流平台 的对应关系")
 print("Start -> 意图识别/条件判断 -> 知识检索 -> 工具节点 -> LLM 节点 -> Answer")
 
 print("\n五、质检维度说明")

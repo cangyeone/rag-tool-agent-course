@@ -69,7 +69,7 @@ col_ask, col_hint = st.columns([1, 4])
 with col_ask:
     ask_clicked = st.button("开始回答", type="primary", use_container_width=True)
 with col_hint:
-    st.info("建议问课程相关问题，例如：RAG 的切片和 overlap 有什么作用？可视化工具 如何接入 DeepSeek？工具调用和 RAG 有什么区别？")
+    st.info("建议问课程相关问题，例如：RAG 的切片和 overlap 有什么作用？在线模型 API 如何接入 RAG 助手？工具调用和 RAG 有什么区别？")
 
 if ask_clicked:
     if not question.strip():

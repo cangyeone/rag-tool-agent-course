@@ -359,7 +359,7 @@ with col_main:
         st.markdown(
             """
             - RAG 的切片和 overlap 有什么作用？
-            - 可视化工具 如何接入 DeepSeek？
+            - 在线模型 API 如何接入 RAG 助手？
             - 工具调用和 RAG 有什么区别？
             - 这两天课程里，RAG 问答机器人一般由哪些步骤组成？
             """

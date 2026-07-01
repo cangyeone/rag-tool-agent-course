@@ -22,7 +22,7 @@ stages = [
     ("阶段 3：云端实战", "Ch02 L2", "DeepSeek API", "真实调用、消息结构、错误处理、结构化输出"),
     ("阶段 4：RAG 构建", "Ch03+", "DeepSeek + 向量库", "知识库检索增强生成，解决大模型幻觉问题"),
     ("阶段 5：Agent 工具", "Ch04+", "Function Calling", "模型调用外部工具，从\u201c说\u201d到\u201c做\u201d"),
-    ("阶段 6：生产部署", "Ch05+", "可视化工具 / LangChain", "工作流编排、评测、监控、灰度发布"),
+    ("阶段 6：生产部署", "Ch05+", "工作流编排 / LangChain", "工作流编排、评测、监控、灰度发布"),
 ]
 
 for stage, chapter, tech, desc in stages:

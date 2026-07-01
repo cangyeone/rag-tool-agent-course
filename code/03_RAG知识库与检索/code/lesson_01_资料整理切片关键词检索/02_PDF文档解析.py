@@ -36,14 +36,10 @@ print("=" * 72)
 # ------------------------------------------------------------
 # 一、选择 PDF 文件
 # ------------------------------------------------------------
-# 课堂默认用课程中已经生成好的 PDF 讲义。
+# 默认尝试读取 docs/example.pdf。
 # 如果设置了 RAG_PDF_PATH，就优先解析用户指定的 PDF。
 
-default_pdf = (
-    "01_6月22日_RAG工具使用培训/"
-    "docs/rendered/"
-    "示例业务系统_RAG工具使用培训课程方案_2026年6月22日.pdf"
-)
+default_pdf = "docs/example.pdf"
 
 pdf_from_env = os.getenv("RAG_PDF_PATH", "").strip()
 pdf_rel_path = pdf_from_env or default_pdf

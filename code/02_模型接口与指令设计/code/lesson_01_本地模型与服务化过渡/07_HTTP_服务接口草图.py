@@ -15,7 +15,6 @@ if not (COURSE_ROOT / "code").is_dir():
 
 print("07 HTTP 服务接口草图")
 print("=" * 72)
-print("知识地图位置：01_6月22日上午_大模型基础与DeepSeek接入 / lesson_02_本地模型与服务化过渡")
 print("演示目标：把命令行模型调用拆成 Web API 的三件事 —— 请求、处理、响应。")
 print()
 
