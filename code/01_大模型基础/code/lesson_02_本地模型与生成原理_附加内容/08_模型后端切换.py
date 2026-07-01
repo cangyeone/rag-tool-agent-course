@@ -214,7 +214,7 @@ router.register(
         "type": "transformers",
         "model_path": str(qwen_path) if (qwen_path := _find_qwen_path()) else str(COURSE_ROOT / "open_models" / "Qwen3.5-0.8B"),
         "description": "本地 transformers 直接加载 Qwen 模型",
-        "适合": "离线演示、深入理解模型原理",
+        "适合": "离线演示、看清模型原理",
     },
     priority=1,
 )

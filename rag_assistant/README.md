@@ -1,51 +1,31 @@
-# RAG 工具公开课 RAG 问答机器人
+# RAG 问答机器人
 
-这是一个本地可运行的 RAG 问答机器人示例。它会先从 `rag-tool-agent-course` 课程资料里检索相关片段，再把检索结果交给 DeepSeek 生成回答。
+这个目录放了一个很小的本地 RAG 示例。它做的事情很直接：
 
-整体链路：
+1. 读取一批文档。
+2. 把长文本切成小段。
+3. 用 BGE-m3 算向量。
+4. 用关键词和向量一起检索。
+5. 把检索到的内容交给模型回答。
 
-```text
-课程资料 -> 文档读取 -> 文本切片 -> BGE-m3 向量化 -> 向量+关键词混合检索 -> DeepSeek 回答
-```
-
-课堂中还有一个 工作流平台 版助教入口，适合参与者直接使用：
-
-```text
-`本地运行后显示的访问地址`
-```
-
-本目录里的本地 RAG 示例更适合讲代码原理；RAG 问答助手更适合上课时查资料、问步骤、排查实操问题。
-
-## 一、目录说明
+对应代码主要是这三个文件：
 
 ```text
-RAG_问答机器人/
-├── app.py                    # Streamlit Web 页面
-├── build_index.py            # 构建本地知识索引
-├── rag_core.py               # RAG 核心逻辑
-├── start_macos_linux.sh      # macOS / Linux 一键启动
-├── start_windows.ps1         # Windows 一键启动
-├── .env.example              # 环境变量示例，不要写真实密钥
-└── storage/                  # 自动生成，保存 chunks 和 embeddings
+rag_assistant/
+├── build_index.py    # 读取资料，切片，建立索引
+├── rag_core.py       # 检索和问答逻辑
+└── app.py            # Streamlit 页面
 ```
 
-## 二、准备 BGE-m3 模型
+## 先准备模型
 
-建议把 BGE-m3 模型放到课程目录下的相对路径：
+默认读取这个位置的 BGE-m3：
 
 ```text
-rag-tool-agent-course/open_models/bge-m3
+open_models/bge-m3
 ```
 
-启动脚本会优先读取上面的课程统一模型目录。如果你只单独拷贝 `RAG_问答机器人/` 文件夹，也可以把模型放到：
-
-```text
-RAG_问答机器人/models/bge-m3
-```
-
-需要手动指定时，可以设置环境变量：
-
-macOS / Linux：
+如果模型放在别处，可以设置环境变量：
 
 ```bash
 export BGE_M3_MODEL_PATH="../open_models/bge-m3"
@@ -57,11 +37,9 @@ Windows PowerShell：
 $env:BGE_M3_MODEL_PATH="..\open_models\bge-m3"
 ```
 
-## 三、设置 DeepSeek API Key
+## 设置 API Key
 
-不要把 API Key 写进代码。运行前在终端设置：
-
-macOS / Linux：
+不要把 Key 写进代码。运行前在终端设置：
 
 ```bash
 export DEEPSEEK_API_KEY="你的 DeepSeek API Key"
@@ -73,94 +51,74 @@ Windows PowerShell：
 $env:DEEPSEEK_API_KEY="你的 DeepSeek API Key"
 ```
 
-## 四、首次构建索引
+## 构建索引
 
-进入目录：
-
-```bash
-cd rag-tool-agent-course/RAG_问答机器人
-```
-
-构建索引：
+在仓库根目录运行：
 
 ```bash
-python build_index.py
+python rag_assistant/build_index.py
 ```
 
-默认会读取整个 `rag-tool-agent-course` 目录下的 `.md`、`.txt`、`.docx`、`.md` 文件，并跳过离线镜像包。
-
-常用参数：
+也可以指定自己的资料目录：
 
 ```bash
-python build_index.py --chunk-size 650 --overlap 120
+python rag_assistant/build_index.py --source-dir ./my_docs
 ```
 
-- `chunk-size`：每个文本片段的大致长度。
-- `overlap`：相邻片段保留多少重叠文本，用来减少上下文被切断的问题。
+两个常用参数：
 
-## 五、启动问答机器人
+- `chunk-size`：每个切片大概多长。
+- `overlap`：相邻切片之间保留多少重复内容。
+
+例如：
+
+```bash
+python rag_assistant/build_index.py --chunk-size 650 --overlap 120
+```
+
+## 启动页面
 
 macOS / Linux：
 
 ```bash
-chmod +x start_macos_linux.sh
-./start_macos_linux.sh
+chmod +x rag_assistant/start_macos_linux.sh
+./rag_assistant/start_macos_linux.sh
 ```
 
 Windows PowerShell：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\start_windows.ps1
+powershell -ExecutionPolicy Bypass -File .\rag_assistant\start_windows.ps1
 ```
 
-打开：
+浏览器打开：
 
 ```text
 http://localhost:8501
 ```
 
-## 六、可以怎么提问
+## 可以问什么
 
-示例问题：
-
-- RAG 问答机器人一般由哪些步骤组成？
+- RAG 一般分成哪几步？
 - 切片时为什么要设置 overlap？
 - 向量检索和关键词检索有什么区别？
-- 在线模型 API 如何接入 RAG 助手？
-- 工具调用和 RAG 的区别是什么？
+- 工具调用和 RAG 有什么区别？
+- 我想换成自己的资料，应该改哪里？
 
-## 七、如何换成自己的资料
+## 可以改哪里
 
-方法一：把新资料放进 `rag-tool-agent-course`，重新构建索引：
+- 想换资料：改 `--source-dir`。
+- 想看切片效果：改 `chunk-size` 和 `overlap`。
+- 想换模型：改 `BGE_M3_MODEL_PATH`。
+- 想看检索结果：打开 `rag_core.py` 里的检索部分，打印 top-k 文本。
+- 想改页面：看 `app.py`。
 
-```bash
-python build_index.py
-```
+## 几个基本概念
 
-方法二：指定资料目录：
-
-```bash
-python build_index.py --source-dir ./my_docs
-```
-
-## 八、课堂讲解建议
-
-可以按这条线讲：
-
-1. 先看 `build_index.py`：资料如何进入知识库。
-2. 再看 `rag_core.py` 里的 `split_text`：为什么需要切片和 overlap。
-3. 再看 `BGEEmbedder`：Embedding 把文本变成可比较的向量。
-4. 再看 `search`：向量检索负责语义相似，关键词检索负责精确命中。
-5. 最后看 `ask_deepseek`：把检索结果放进输入上下文，让模型基于资料回答。
-
-这就是一个最小但完整的 RAG 闭环。
-
-## 九、和 RAG 问答助手的关系
-
-建议这样安排：
-
-- 先用本地 RAG 示例说明“资料读取、切片、向量化、检索、生成”的代码链路。
-- 再打开 RAG 问答助手，可看到同一批课程资料可以被放进可视化工作流。
-- 最后可提问 工作流平台 助教：“这个本地 RAG 示例和 知识库检索模块有什么对应关系？”
-
-这样参与者既能理解代码细节，也能理解工作流平台里的节点不是凭空出现的，而是对同一套 RAG 流程的封装。
+- 知识库：可以被检索的一批文档片段。
+- 切片：把长文档拆成适合检索的小段。
+- Embedding：把文本变成向量。
+- 向量检索：找语义相近的内容。
+- 关键词检索：找字面上命中的内容。
+- 混合检索：把向量检索和关键词检索放在一起用。
+- 上下文：模型回答前看到的参考资料。
