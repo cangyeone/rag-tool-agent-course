@@ -53,6 +53,12 @@ cp .env.example .env
 
 本课程采用 [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/) 许可协议发布。
 
+## 联系方式
+
+- Xin Liu: xinliu_geo@outlook.com
+- Yuqi Cai: caiyuqiming@foxmail.com
+- Ziye Yu: yuziye@hotmail.com
+
 ## 学习目标
 
 完成课程后，学员应该能够：
