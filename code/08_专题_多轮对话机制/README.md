@@ -12,9 +12,9 @@
 └── code/
     ├── 01_DeepSeek多轮对话_纯对话模式.py
     ├── 02_DeepSeek多轮对话_tool_calls_thinking.py
-    ├── 04_Qwen本地模型多轮对话.py
-    ├── 05_OpenAI_SDK调用DeepSeek多轮对话.py
-    └── 07_Qwen本地模型最原始多轮对话.py
+    ├── 03_Qwen本地模型多轮对话.py
+    ├── 04_OpenAI_SDK调用DeepSeek多轮对话.py
+    └── 05_Qwen本地模型最原始多轮对话.py
 ```
 
 ## 核心结论

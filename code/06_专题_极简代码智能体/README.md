@@ -16,14 +16,14 @@ code/
 
 | 环节 | 建议时长 | 脚本 | 重点 |
 | --- | --- | --- | --- |
-| 代码接口最小示例 | 20 分钟 | `00_DeepSeek代码接口最小示例.py` | Chat 生成代码、FIM 补全代码 |
-| 认识 Coding Agent | 20 分钟 | `01_生成Plan_JSON.py` | 任务拆解、plan、JSON |
-| 工具调用读文件 | 30 分钟 | `02_工具调用_读取文件.py` | tool call、list_files、read_file |
-| 让模型改代码 | 40 分钟 | `03_生成代码并写入文件.py` | 读取上下文、生成完整文件、写入 |
-| 运行测试再修复 | 60 分钟 | `04_运行测试并自动修复.py` | run tests、错误反馈、二次修复 |
-| 最小 Agent 循环 | 90 分钟 | `05_最小CodingAgent循环.py` | plan、act、observe、memory |
-| 专用代码补全接口 | 30 分钟 | `06_FIM代码补全接口.py` | prefix、suffix、补中间代码 |
-| 代码块前缀补全 | 30 分钟 | `07_ChatPrefix代码块补全.py` | assistant prefix、Python 代码块前缀、stop |
+| 代码接口最小示例 | 20 分钟 | `01_DeepSeek代码接口最小示例.py` | Chat 生成代码、FIM 补全代码 |
+| 认识 Coding Agent | 20 分钟 | `02_生成Plan_JSON.py` | 任务拆解、plan、JSON |
+| 工具调用读文件 | 30 分钟 | `03_工具调用_读取文件.py` | tool call、list_files、read_file |
+| 让模型改代码 | 40 分钟 | `04_生成代码并写入文件.py` | 读取上下文、生成完整文件、写入 |
+| 运行测试再修复 | 60 分钟 | `05_运行测试并自动修复.py` | run tests、错误反馈、二次修复 |
+| 最小 Agent 循环 | 90 分钟 | `06_最小CodingAgent循环.py` | plan、act、observe、memory |
+| 专用代码补全接口 | 30 分钟 | `07_FIM代码补全接口.py` | prefix、suffix、补中间代码 |
+| 代码块前缀补全 | 30 分钟 | `08_ChatPrefix代码块补全.py` | assistant prefix、Python 代码块前缀、stop |
 
 ## 能展示什么
 
@@ -56,13 +56,13 @@ cd rag-tool-agent-course
 运行：
 
 ```bash
-python code/06_专题_极简代码智能体/code/01_生成Plan_JSON.py
+python code/06_专题_极简代码智能体/code/02_生成Plan_JSON.py
 ```
 
 从最基础的代码接口开始：
 
 ```bash
-python code/06_专题_极简代码智能体/code/00_DeepSeek代码接口最小示例.py
+python code/06_专题_极简代码智能体/code/01_DeepSeek代码接口最小示例.py
 ```
 
 脚本会读取系统环境变量 `DEEPSEEK_API_KEY`。公开仓库不提供任何真实 Key。

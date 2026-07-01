@@ -3,14 +3,14 @@
 ## 文件说明
 
 ```text
-00_DeepSeek代码接口最小示例.py
-01_生成Plan_JSON.py
-02_工具调用_读取文件.py
-03_生成代码并写入文件.py
-04_运行测试并自动修复.py
-05_最小CodingAgent循环.py
-06_FIM代码补全接口.py
-07_ChatPrefix代码块补全.py
+01_DeepSeek代码接口最小示例.py
+02_生成Plan_JSON.py
+03_工具调用_读取文件.py
+04_生成代码并写入文件.py
+05_运行测试并自动修复.py
+06_最小CodingAgent循环.py
+07_FIM代码补全接口.py
+08_ChatPrefix代码块补全.py
 demo_project/
 ├── calculator.py
 └── test_calculator.py
@@ -18,14 +18,14 @@ demo_project/
 
 ## 学习顺序
 
-1. 先看 `00_DeepSeek代码接口最小示例.py`，理解代码类 API 的最小调用方式。
-2. 再看 `01_生成Plan_JSON.py`，理解 plan。
-3. 再看 `02_工具调用_读取文件.py`，理解 tool call。
-4. 再看 `03_生成代码并写入文件.py`，理解模型如何产出完整代码。
-5. 再看 `04_运行测试并自动修复.py`，理解测试反馈。
-6. 再看 `05_最小CodingAgent循环.py`，理解最小 agent loop。
-7. 补充看 `06_FIM代码补全接口.py`，理解专门的代码补全接口。
-8. 补充看 `07_ChatPrefix代码块补全.py`，理解如何用代码块前缀约束输出。
+1. 先看 `01_DeepSeek代码接口最小示例.py`，理解代码类 API 的最小调用方式。
+2. 再看 `02_生成Plan_JSON.py`，理解 plan。
+3. 再看 `03_工具调用_读取文件.py`，理解 tool call。
+4. 再看 `04_生成代码并写入文件.py`，理解模型如何产出完整代码。
+5. 再看 `05_运行测试并自动修复.py`，理解测试反馈。
+6. 再看 `06_最小CodingAgent循环.py`，理解最小 agent loop。
+7. 补充看 `07_FIM代码补全接口.py`，理解专门的代码补全接口。
+8. 补充看 `08_ChatPrefix代码块补全.py`，理解如何用代码块前缀约束输出。
 
 ## DeepSeek 接口说明
 
