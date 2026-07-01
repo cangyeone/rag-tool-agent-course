@@ -9,6 +9,7 @@
 ```text
 08_专题_多轮对话机制/
 ├── 多轮对话_其他模型与国际模型做法说明.md
+├── 多轮对话_缓存命中与计费说明.md
 └── code/
     ├── 01_DeepSeek多轮对话_纯对话模式.py
     ├── 02_DeepSeek多轮对话_tool_calls_thinking.py
@@ -26,6 +27,24 @@
 | 本地 Qwen transformers | 自己维护 `messages` 列表 | 用 JSON 协议手搓 tool calls，再用 `apply_chat_template` 渲染输入 |
 | 本地 Qwen 原始多轮 | 自己维护 `messages` 列表 | 不加工具，不加 JSON，只展示 chat template + generate |
 | OpenAI SDK 调 DeepSeek | 写法与 OpenAI SDK 基本一致 | 关键是 `base_url="https://api.deepseek.com"` |
+
+## 缓存与计费
+
+多轮对话的费用不只来自用户刚输入的一句话。每轮请求里重新传入的历史消息、RAG 片段、工具返回结果，以及模型本轮生成的内容都会影响成本。
+
+建议配合阅读：
+
+```text
+多轮对话_缓存命中与计费说明.md
+```
+
+这份文档重点解释：
+
+- 缓存命中和未命中的区别。
+- 输入 token、缓存 token、输出 token 分别是什么。
+- 为什么长输出经常比长输入更贵。
+- 为什么完整历史、过多检索片段、长回答会让费用差距变大。
+- 如何通过历史摘要、Top K 控制、固定前缀来降低成本。
 
 ## 运行方式
 
