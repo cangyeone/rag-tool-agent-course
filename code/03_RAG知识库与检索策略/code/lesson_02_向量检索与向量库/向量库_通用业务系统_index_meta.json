@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "total_vectors": 4,
+  "dim": 8,
+  "vector_file": "向量库_示例业务系统_demo.npy",
+  "metadata_file": "向量库_示例业务系统_metadata.jsonl",
+  "created_at": "2026-06-20 22:56:55"
+}

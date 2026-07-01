@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "created_at": "2026-06-23 08:23:39",
+  "embedding_model": "bge-m3",
+  "model_path": "open_models/bge-m3",
+  "vector_dim": 1024,
+  "normalize_embeddings": true,
+  "similarity": "inner_product，因向量已归一化，等价于 cosine",
+  "total_documents": 10,
+  "faiss_index": "bge_m3_示例业务系统.index",
+  "vector_matrix": "bge_m3_vectors.npy",
+  "metadata": "bge_m3_metadata.jsonl"
+}

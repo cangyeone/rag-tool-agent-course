@@ -1,0 +1,11 @@
+requests>=2.31.0
+python-dotenv>=1.0.1
+rich>=13.7.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+rank-bm25>=0.2.2
+faiss-cpu>=1.8.0; platform_machine != "arm64"
+streamlit>=1.36.0
+pypdf>=4.2.0
+PyMuPDF>=1.24.0
+openai>=1.40.0
